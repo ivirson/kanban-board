@@ -4,7 +4,7 @@ O propósito desse desafio é a criação de frontend para um quadro de kanban. 
 
 ## Rodando a API
 
-Uma API de exemplo foi disponibilizada na pasta BACK.
+Uma API de exemplo foi disponibilizada o repositório localizado [neste link](https://gitlab.com/gabriel.militello1/desafio-tecnico-frontend).
 
 Para rodá-la, faça:
 
