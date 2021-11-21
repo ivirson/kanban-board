@@ -1,0 +1,47 @@
+<mat-card class="kanban-card">
+  <mat-card-header>
+    <mat-card-title>
+      <span>{{ card?.titulo }}</span>
+    </mat-card-title>
+    <button mat-icon-button matTooltip="Editar item" (click)="updateCard()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </mat-card-header>
+
+  <mat-card-content>
+    <markdown class="variable-binding" [data]="card?.conteudo"></markdown>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <div class="button-prev">
+      <button
+        mat-icon-button
+        matTooltip="Mover para a lista anterior"
+        [disabled]="card.lista === cardCategory.TODO"
+        (click)="moveToPreviousList()"
+      >
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+    </div>
+    <div class="delete">
+      <button
+        mat-icon-button
+        class="danger"
+        matTooltip="Apagar item da lista"
+        (click)="deleteCard(card.id!)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <div class="button-next">
+      <button
+        mat-icon-button
+        matTooltip="Mover para a lista seguinte"
+        [disabled]="card.lista === cardCategory.DONE"
+        (click)="moveToNextList()"
+      >
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>
