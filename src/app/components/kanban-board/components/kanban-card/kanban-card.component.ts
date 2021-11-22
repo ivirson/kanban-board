@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Component, EventEmitter, Input, OnChanges, Output, SecurityContext, SimpleChanges } from '@angular/core';
 import { first } from 'rxjs';
 import { CardCategoryEnum } from 'src/app/constants/card-category.enum';
 import { Card } from 'src/app/models/card.model';
@@ -9,17 +10,24 @@ import { KanbanService } from 'src/app/services/kanban.service';
   templateUrl: './kanban-card.component.html',
   styleUrls: ['./kanban-card.component.scss']
 })
-export class KanbanCardComponent implements OnInit {
+export class KanbanCardComponent implements OnChanges {
 
-  @Input() public card!: Card;
+  @Input() public card: Card;
   @Output() public updateCardEmitter = new EventEmitter();
   @Output() public updatedCardEmitter = new EventEmitter();
 
   public cardCategory = CardCategoryEnum;
+  public cardContent: string = '';
 
-  constructor(private kanbanService: KanbanService) { }
+  constructor(
+    private kanbanService: KanbanService,
+    private _sanitizer: DomSanitizer
+  ) { }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.card && changes['card']) {
+      this.cardContent = `${this._sanitizer.sanitize(SecurityContext.RESOURCE_URL, this._sanitizer.bypassSecurityTrustResourceUrl(this.card.conteudo))}`;
+    }
   }
 
   public updateCard(): void {

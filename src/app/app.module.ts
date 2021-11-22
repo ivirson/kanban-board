@@ -14,8 +14,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { AppComponent } from './app.component';
-import { KanbanBoardComponent } from './components/board/kanban-board.component';
-import { KanbanCardComponent } from './components/board/components/kanban-card/kanban-card.component';
+import { KanbanBoardComponent } from './components/kanban-board/kanban-board.component';
+import { KanbanCardComponent } from './components/kanban-board/components/kanban-card/kanban-card.component';
 
 @NgModule({
   declarations: [

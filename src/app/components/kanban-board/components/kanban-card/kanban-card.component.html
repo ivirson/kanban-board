@@ -9,7 +9,11 @@
   </mat-card-header>
 
   <mat-card-content>
-    <markdown class="variable-binding" [data]="card?.conteudo"></markdown>
+    <markdown
+      *ngIf="card"
+      class="variable-binding"
+      [data]="cardContent"
+    ></markdown>
   </mat-card-content>
 
   <mat-card-actions>
